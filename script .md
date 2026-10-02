@@ -1,0 +1,1 @@
+romanshu-portfolio-ipad.html In this file we have all code are avaliable so that i want all file separate it into js file,html file,css file convert it into 1 backend folder 2 is frontend folder because i wnat to host this website so that give me respinsive code with all working fine 

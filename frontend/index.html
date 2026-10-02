@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Romanshu — Graphic & UI/UX Designer</title>
+<meta name="description" content="Romanshu is a graphic designer and UI/UX designer crafting brand identities and digital products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="cursor"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#/">Romanshu<span>.</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#/" data-route="home">Home</a>
+      <a href="#/graphic" data-route="graphic">Graphic Design</a>
+      <a href="#/uiux" data-route="uiux">UI/UX</a>
+      <a href="#/contact" data-route="contact">Contact</a>
+    </div>
+    <div aria-hidden="true"></div>
+  </div>
+</nav>
+
+<!-- ============ HOME ============ -->
+<main id="page-home" class="page active">
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-inner" id="heroInner">
+        <div>
+          <div class="eyebrow rv"><span>Open to full-time roles</span></div>
+          <h1 class="rv blur">Design that<br><em>earns</em> attention.</h1>
+          <p class="lead rv">I'm Romanshu — a graphic & UI/UX designer building brand identities and digital products that feel inevitable, not decorated.</p>
+          <div class="btn-row rv">
+            <a class="btn solid magnetic" href="#/graphic">View Portfolio</a>
+            <a class="btn magnetic hire-only" href="#/contact">Hire Me</a>
+            
+          </div>
+          <div class="availability rv"><span class="dot"></span><span>Available for full-time — 2 weeks notice</span></div>
+        </div>
+        <div class="hero-visual rv">
+          <div class="portrait">
+            <div class="grid-bg"></div>
+            <svg viewBox="0 0 200 220" aria-label="Portrait of Romanshu">
+              <defs><linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2a2a"/><stop offset="1" stop-color="#111"/></linearGradient></defs>
+              <ellipse cx="100" cy="70" rx="42" ry="48" fill="url(#pg)"/>
+              <path d="M30 220 C30 150 70 130 100 130 C130 130 170 150 170 220 Z" fill="url(#pg)"/>
+              <ellipse cx="100" cy="70" rx="42" ry="48" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="float f1 parallax" data-depth="18"><div class="fig-node"><span class="node-sq"></span>Frame 01 · Hero</div></div>
+          <div class="float f2 parallax wire-card" data-depth="30"><div class="wire-line acc"></div><div class="wire-line"></div><div class="wire-line short"></div></div>
+          <div class="float f3 parallax" data-depth="24"><div class="vector"><span class="v-handle"></span><span class="v-line"></span><span class="v-handle"></span></div></div>
+          <div class="float f4 parallax" data-depth="14"><div class="cursor-chip"><svg viewBox="0 0 24 24"><path d="M4 2l16 8-7 2-2 7z"/></svg>romanshu</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT: pinned phrase morph -->
+  <div class="pin-wrap" id="aboutPin">
+    <div class="pin-sticky">
+      <div class="wrap" style="width:100%">
+        <div class="eyebrow">About</div>
+        <div class="morph-stage" id="morphStage"></div>
+        <div class="morph-progress" id="morphProg"></div>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding-top:40px">
+    <div class="wrap two-col">
+      <div class="rv"><h2 class="rv blur" style="font-size:clamp(28px,3.5vw,44px)">Precision in pixels,<br>intent in every line.</h2></div>
+      <div class="rv">
+        <p class="grey" style="font-size:17px;margin-bottom:20px">Five years across brand identity, packaging, and product design. I work where graphic craft meets interface logic — a wordmark and a design system speaking the same language.</p>
+        <p class="grey" style="font-size:17px">Understand the problem deeply, reduce until only the essential remains, then obsess over the last 5%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS: pinned typographic reveal -->
+  <div class="pin-wrap" id="skillsPin">
+    <div class="pin-sticky">
+      <div class="wrap" style="width:100%">
+        <div class="eyebrow">Skills</div>
+        <div class="words-stage" id="wordsStage"></div>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding-top:40px">
+    <div class="wrap">
+      <div class="skill-grid">
+        <div class="skill rv"><h4>Brand Identity</h4><p>Logos, systems, guidelines that scale from favicon to billboard.</p></div>
+        <div class="skill rv"><h4>UI Design</h4><p>Interfaces with clear hierarchy, rhythm, and restraint.</p></div>
+        <div class="skill rv"><h4>UX & Research</h4><p>Flows, wireframes, and testing that de-risk product decisions.</p></div>
+        <div class="skill rv"><h4>Motion Graphics</h4><p>Micro-interactions and brand motion in After Effects & Rive.</p></div>
+        <div class="skill rv"><h4>Design Systems</h4><p>Token-based Figma libraries teams actually use.</p></div>
+        <div class="skill rv"><h4>Packaging & Print</h4><p>Dielines, print production, and shelf presence.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv"><div class="eyebrow">Tools I Use</div><h2>My daily workflow</h2></div>
+      <div class="tool-grid" id="toolGrid"></div>
+    </div>
+  </section>
+
+  <div class="hire-only">
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv"><div class="eyebrow">Experience</div><h2>Where I've worked</h2></div>
+      <div class="timeline">
+        <div class="tl-item rv"><div class="when">2024 — Present</div><h4>Senior Product Designer</h4><div class="co">Northline Studio · Remote</div><p>Leading design for two B2B SaaS products. Shipped a design system that cut design-to-dev handoff time by 40%.</p></div>
+        <div class="tl-item rv"><div class="when">2022 — 2024</div><h4>Brand & UI Designer</h4><div class="co">Mono Agency · Mumbai</div><p>Delivered 20+ brand identities and product interfaces for D2C and fintech clients.</p></div>
+        <div class="tl-item rv"><div class="when">2020 — 2022</div><h4>Graphic Designer</h4><div class="co">Freelance</div><p>Packaging, social, and print for early-stage founders. Learned to ship fast without losing craft.</p></div>
+      </div>
+      <div class="btn-row rv" style="margin-top:24px">
+        <a class="btn solid magnetic" href="#" onclick="toast('Resume download — wired to CMS in production');return false">Download Resume</a>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="legacy-free-hidden">
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv"><div class="eyebrow">Services & Pricing</div><h2>Transparent by design</h2></div>
+      <div class="price-cta rv">
+        <h3>Services & Pricing</h3>
+        <p>Every project is unique. Our pricing is designed to be transparent, flexible, and scalable based on your business needs.</p>
+        <button class="btn solid magnetic" onclick="openPricing()">View Complete Pricing</button>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv"><div class="eyebrow"><span>Featured Projects</span></div><h2>Selected work</h2></div>
+      <div class="proj-grid" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap rv" style="text-align:center;border:1px solid var(--line);border-radius:28px;padding:80px 32px;background:var(--card)">
+      <h2 style="font-size:clamp(30px,4.5vw,52px);margin-bottom:20px">Have something in mind?</h2>
+      <p class="grey" style="margin-bottom:36px">Let's talk about it.</p>
+      <a class="btn solid magnetic" href="#/contact"><span>Hire Me</span></a>
+    </div>
+  </section>
+</main>
+
+<!-- ============ GRAPHIC ============ -->
+<main id="page-graphic" class="page">
+  <section>
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div class="eyebrow">Graphic Design</div>
+        <h2>Craft you can hold,<br>brands you remember.</h2>
+        <p class="hint rv"><kbd>Click</kbd> for details &nbsp;·&nbsp; <kbd>Double-click</kbd> for full-screen preview</p>
+      </div>
+      <div class="graphic-filters rv" id="graphicFilters" role="toolbar" aria-label="Filter graphic design work">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="reel">Reels</button>
+        <button class="filter-btn" data-filter="post">Posts</button>
+        <button class="filter-btn" data-filter="branding">Branding</button>
+        <button class="filter-btn" data-filter="packaging">Packaging</button>
+        <button class="filter-btn" data-filter="print">Print</button>
+        <button class="filter-btn" data-filter="motion">Motion</button>
+        <button class="filter-btn" data-filter="amazon">Amazon</button>
+        <button class="filter-btn" data-filter="advertising">Advertising</button>
+        <button class="filter-btn" data-filter="presentation">Presentation</button>
+        <button class="filter-btn" data-filter="gif">GIFs</button>
+      </div>
+      <div class="filter-status" id="filterStatus" aria-live="polite"></div>
+      <div class="masonry" id="gMasonry"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ UI/UX ============ -->
+<main id="page-uiux" class="page">
+  <section>
+    <div class="wrap">
+      <div class="sec-head rv"><div class="eyebrow">UI/UX Portfolio</div><h2>Products designed<br>to be used, not admired.</h2></div>
+      <div class="ui-grid" id="uiGrid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ CONTACT ============ -->
+<main id="page-contact" class="page">
+  <section style="padding-bottom:0">
+    <div class="wrap contact-hero">
+      <div class="eyebrow rv">Contact</div>
+      <h1 class="rv blur">Let's build something<span class="accent">amazing together.</span></h1>
+
+      <div class="hire-only">
+        <div class="two-col">
+          <div class="recruiter-card rv">
+            <div class="eyebrow" style="margin-bottom:16px">For Recruiters</div>
+            <p class="grey" style="margin-bottom:28px">Everything you need in one place — resume, contact details, and current availability.</p>
+            <div class="btn-row">
+              <a class="btn solid magnetic" href="#" onclick="toast('Resume download — wired to CMS in production');return false">Download Resume</a>
+              <a class="btn magnetic" href="mailto:hello@romanshu.design">Hire Me</a>
+            </div>
+            <div class="availability" style="margin-top:32px"><span class="dot"></span>Open to full-time opportunities · 2 weeks notice</div>
+          </div>
+          <div class="rv">
+            <div class="links-list">
+              <a href="mailto:hello@romanshu.design">Email <span>hello@romanshu.design</span></a>
+              <a href="tel:+919000000000">Phone <span>+91 90000 00000</span></a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+              <a href="https://behance.net" target="_blank" rel="noopener">Behance <span>↗</span></a>
+              <div class="li-static">Location <span>Pune, India · Remote-friendly</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="padding-bottom:110px"></div>
+      </div>
+
+      <div class="legacy-free-hidden">
+        <div class="two-col">
+          <form class="rv" onsubmit="sendInquiry(event)">
+            <div class="f2c">
+              <input type="text" placeholder="Your name" required aria-label="Name">
+              <input type="text" placeholder="Company name" aria-label="Company">
+            </div>
+            <div class="f2c">
+              <input type="email" placeholder="Email address" required aria-label="Email">
+              <input type="tel" placeholder="Phone number" aria-label="Phone">
+            </div>
+            <div class="f2c">
+              <input type="text" placeholder="Country" aria-label="Country">
+              <select aria-label="Service required" required>
+                <option value="" disabled selected>Service required</option>
+                <option>Brand Identity</option><option>Packaging Design</option><option>Social Media Design</option>
+                <option>Amazon Listing Design</option><option>UI Design</option><option>Website Design</option>
+                <option>Presentation Design</option><option>Motion Graphics</option><option>Video Editing</option>
+                <option>Advertising Creatives</option>
+              </select>
+            </div>
+            <div class="f2c">
+              <select aria-label="Budget range" required>
+                <option value="" disabled selected>Budget range</option>
+                <option>Under ₹50,000</option><option>₹50,000 – ₹1,00,000</option>
+                <option>₹1,00,000 – ₹3,00,000</option><option>₹3,00,000+</option>
+              </select>
+              <select aria-label="Timeline" required>
+                <option value="" disabled selected>Timeline</option>
+                <option>Urgent — under 2 weeks</option><option>2–4 weeks</option>
+                <option>1–2 months</option><option>Flexible</option>
+              </select>
+            </div>
+            <textarea placeholder="Tell me about your project…" required aria-label="Project description"></textarea>
+            <button class="btn solid magnetic" type="submit" style="justify-self:start">Let's Build Your Project</button>
+          </form>
+          <div class="rv">
+            <div class="links-list">
+              <a href="mailto:studio@romanshu.design">Business Email <span>studio@romanshu.design</span></a>
+              <a href="tel:+919000000001">Business Phone <span>+91 90000 00001</span></a>
+              <a href="https://wa.me/919000000001" target="_blank" rel="noopener">WhatsApp <span>↗</span></a>
+              <a href="https://instagram.com" target="_blank" rel="noopener">Instagram <span>↗</span></a>
+              <div class="li-static">Response Time <span>Within 24 hours</span></div>
+            </div>
+            <div class="availability" style="margin-top:32px"><span class="dot"></span>Currently accepting freelance projects</div>
+          </div>
+        </div>
+
+        <!-- freelance closing message -->
+        <div class="closer rv">
+          <h2>Great ideas deserve design<br>your audience <span class="accent">won't forget.</span></h2>
+          <p>From the first sketch to the final pixel — let's build something remarkable.</p>
+          <a class="btn solid magnetic" href="mailto:studio@romanshu.design">Start Your Project</a>
+        </div>
+      </div>
+
+      <!-- Freelance CTA -->
+      <div class="freelance-cta rv">
+        <div>
+          <div class="eyebrow">Freelance</div>
+          <h2>Need a designer for your next project?</h2>
+          <p>Tell us what you’re working on. Get the freelance services, pricing, contact details, and project inquiry form in one place.</p>
+        </div>
+        <a class="btn solid magnetic" href="#/freelance">Connect for Freelance Work <span>↗</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FREELANCE ============ -->
+<main id="page-freelance" class="page">
+  <section style="padding-bottom:0">
+    <div class="wrap contact-hero">
+      <div class="eyebrow rv">Freelance</div>
+      <h1 class="rv blur">Let's build something<span class="accent">amazing together.</span></h1>
+      <div class="freelance-contact-grid">
+        <form class="rv" onsubmit="sendInquiry(event)">
+          <div class="f2c">
+            <input type="text" placeholder="Your name" required aria-label="Name">
+            <input type="text" placeholder="Company name" aria-label="Company">
+          </div>
+          <div class="f2c">
+            <input type="email" placeholder="Email address" required aria-label="Email">
+            <input type="tel" placeholder="Phone number" aria-label="Phone">
+          </div>
+          <div class="f2c">
+            <input type="text" placeholder="Country" aria-label="Country">
+            <select aria-label="Service required" required>
+              <option value="" disabled selected>Service required</option>
+              <option>Brand Identity</option><option>Packaging Design</option><option>Social Media Design</option>
+              <option>Amazon Listing Design</option><option>UI Design</option><option>Website Design</option>
+              <option>Presentation Design</option><option>Motion Graphics</option><option>Video Editing</option>
+              <option>Advertising Creatives</option>
+            </select>
+          </div>
+          <div class="f2c">
+            <select aria-label="Budget range" required>
+              <option value="" disabled selected>Budget range</option>
+              <option>Under ₹50,000</option><option>₹50,000 – ₹1,00,000</option>
+              <option>₹1,00,000 – ₹3,00,000</option><option>₹3,00,000+</option>
+            </select>
+            <select aria-label="Timeline" required>
+              <option value="" disabled selected>Timeline</option>
+              <option>Urgent — under 2 weeks</option><option>2–4 weeks</option>
+              <option>1–2 months</option><option>Flexible</option>
+            </select>
+          </div>
+          <textarea placeholder="Tell me about your project…" required aria-label="Project description"></textarea>
+          <button class="btn solid magnetic" type="submit" style="justify-self:start">Let's Build Your Project</button>
+        </form>
+
+        <div class="rv">
+          <div class="links-list">
+            <a href="mailto:studio@romanshu.design">Business Email <span>studio@romanshu.design</span></a>
+            <a href="tel:+919000000001">Business Phone <span>+91 90000 00001</span></a>
+            <a href="https://wa.me/919000000001" target="_blank" rel="noopener">WhatsApp <span>↗</span></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener">Instagram <span>↗</span></a>
+            <div class="li-static">Response Time <span>Within 24 hours</span></div>
+          </div>
+          <div class="availability" style="margin-top:32px"><span class="dot"></span>Currently accepting freelance projects</div>
+        </div>
+      </div>
+
+      <div class="closer rv">
+        <h2>Great ideas deserve design<br>your audience <span class="accent">won't forget.</span></h2>
+        <p>From the first sketch to the final pixel — let's build something remarkable.</p>
+        <a class="btn solid magnetic" href="mailto:studio@romanshu.design">Start Your Project</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="scrim" id="scrim" onclick="closeDrawer()"></div>
+<aside class="drawer" id="drawer" aria-label="Project details">
+  <button class="drawer-close" onclick="closeDrawer()" aria-label="Close">✕</button>
+  <div id="drawerBody"></div>
+</aside>
+
+<div class="fsv" id="fsv" role="dialog" aria-modal="true">
+  <div class="fsv-top">
+    <div><b id="fsvTitle"></b><span id="fsvType"></span></div>
+    <button class="drawer-close" style="margin:0" onclick="closeFsv()" aria-label="Close">✕</button>
+  </div>
+  <div class="fsv-stage" id="fsvStage"></div>
+</div>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+  <button class="close-x" onclick="closeOverlay()" aria-label="Close">✕</button>
+  <div class="case" id="caseBox"></div>
+</div>
+
+<div class="toast" id="toast">Done</div>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Romanshu — Designed with intent.</div>
+    <div>Pune, India · Working worldwide</div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

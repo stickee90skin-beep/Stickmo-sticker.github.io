@@ -1,0 +1,12 @@
+{
+  "name": "romanshu-portfolio-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Node.js host for the Romanshu portfolio frontend",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
