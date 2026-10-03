@@ -476,7 +476,7 @@ document.addEventListener('mousemove', e => {
   });
   const dx = (e.clientX / innerWidth - .5), dy = (e.clientY / innerHeight - .5);
   document.querySelectorAll('.parallax').forEach(el => {
-    const d = +el.dataset.depth; el.style.marginLeft = dx * d + 'px';
+    const d = +el.dataset.depth; el.style.marginLeft = dx * d + 'px'; el.style.marginTop = dy * d + 'px';
   });
 });
 
