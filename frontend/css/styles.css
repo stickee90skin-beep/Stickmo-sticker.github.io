@@ -83,14 +83,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);b
 .portrait svg{width:78%;opacity:.95}
 .portrait::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(5,5,5,.85));pointer-events:none}
 .portrait .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:40px 40px;opacity:.5}
-.float{position:absolute;border-radius:14px;background:rgba(15,15,15,.85);backdrop-filter:blur(10px);border:1px solid var(--line);padding:14px 16px;font-size:12px;color:var(--grey);animation:floatY 6s ease-in-out infinite;box-shadow:0 20px 40px rgba(0,0,0,.5);will-change:transform}
-@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.float{position:absolute;border-radius:14px;background:rgba(15,15,15,.85);backdrop-filter:blur(10px);border:1px solid var(--line);padding:14px 16px;font-size:12px;color:var(--grey);transition:transform .18s ease-out;box-shadow:0 20px 40px rgba(0,0,0,.5);will-change:transform}
 .float .fig-node{display:flex;align-items:center;gap:8px;font-family:var(--display);color:var(--white);font-size:13px}
 .node-sq{width:12px;height:12px;border:2px solid var(--accent);border-radius:3px;transition:border-color .5s}
 .f1{top:6px;left:-16px}
-.f2{top:120px;right:-24px;animation-delay:1.2s}
-.f3{bottom:110px;left:-40px;animation-delay:2.2s}
-.f4{bottom:-4px;right:6px;animation-delay:.6s}
+.f2{top:120px;right:-24px}
+.f3{bottom:110px;left:-40px}
+.f4{bottom:-4px;right:6px}
 .wire-card{width:150px}
 .wire-line{height:7px;border-radius:4px;background:#1e1e1e;margin-bottom:7px}
 .wire-line.short{width:60%}
