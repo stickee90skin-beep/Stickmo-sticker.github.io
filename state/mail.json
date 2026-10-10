@@ -1,0 +1,22 @@
+{
+  "inquiries": [
+    {
+      "id": "inq_1791629687011",
+      "name": "Harshal Ravindra Dabhade",
+      "company": "google",
+      "email": "harshaldabhade1222@gmail.com",
+      "phone": "+917709206639",
+      "country": "India",
+      "service": "Brand Identity",
+      "budget": "Under ₹50,000",
+      "timeline": "Urgent — under 2 weeks",
+      "message": "hhhj",
+      "sentAt": "2026-10-10T10:54:47.011Z",
+      "emailStatus": "sent"
+    }
+  ],
+  "stats": {
+    "totalSent": 1,
+    "lastSentAt": "2026-10-10T10:54:47.011Z"
+  }
+}
