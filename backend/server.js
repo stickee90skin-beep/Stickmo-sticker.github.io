@@ -165,6 +165,13 @@ const server = createServer(async (request, response) => {
     response.end('Not found');
     return;
   }
+
+  const relativePath = pathname.replace(/^[/\\]+/, '') || 'index.html';
+  if (relativePath !== 'index.html' && !relativePath.startsWith('frontend/')) {
+    response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    response.end('Not found');
+    return;
+  }
   const filePath = resolve(siteRoot, relativePath);
   const relativeToRoot = relative(siteRoot, filePath);
   if (relativeToRoot === '..' || relativeToRoot.startsWith('..' + sep) || isAbsolute(relativeToRoot)) {
