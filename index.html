@@ -230,16 +230,16 @@
         <div class="two-col">
           <form class="rv" onsubmit="sendInquiry(event)">
             <div class="f2c">
-              <input type="text" placeholder="Your name" required aria-label="Name">
-              <input type="text" placeholder="Company name" aria-label="Company">
+              <input type="text" name="name" placeholder="Your name" required aria-label="Name">
+              <input type="text" name="company" placeholder="Company name" aria-label="Company">
             </div>
             <div class="f2c">
-              <input type="email" placeholder="Email address" required aria-label="Email">
-              <input type="tel" placeholder="Phone number" aria-label="Phone">
+              <input type="email" name="email" placeholder="Email address" required aria-label="Email">
+              <input type="tel" name="phone" placeholder="Phone number" aria-label="Phone">
             </div>
             <div class="f2c">
-              <input type="text" placeholder="Country" aria-label="Country">
-              <select aria-label="Service required" required>
+              <input type="text" name="country" placeholder="Country" aria-label="Country">
+              <select name="service" aria-label="Service required" required>
                 <option value="" disabled selected>Service required</option>
                 <option>Brand Identity</option><option>Packaging Design</option><option>Social Media Design</option>
                 <option>Amazon Listing Design</option><option>UI Design</option><option>Website Design</option>
@@ -248,18 +248,18 @@
               </select>
             </div>
             <div class="f2c">
-              <select aria-label="Budget range" required>
+              <select name="budget" aria-label="Budget range" required>
                 <option value="" disabled selected>Budget range</option>
                 <option>Under ₹50,000</option><option>₹50,000 – ₹1,00,000</option>
                 <option>₹1,00,000 – ₹3,00,000</option><option>₹3,00,000+</option>
               </select>
-              <select aria-label="Timeline" required>
+              <select name="timeline" aria-label="Timeline" required>
                 <option value="" disabled selected>Timeline</option>
                 <option>Urgent — under 2 weeks</option><option>2–4 weeks</option>
                 <option>1–2 months</option><option>Flexible</option>
               </select>
             </div>
-            <textarea placeholder="Tell me about your project…" required aria-label="Project description"></textarea>
+            <textarea name="message" placeholder="Tell me about your project…" required aria-label="Project description"></textarea>
             <button class="btn solid magnetic" type="submit" style="justify-self:start">Let's Build Your Project</button>
           </form>
           <div class="rv">
@@ -304,16 +304,16 @@
       <div class="freelance-contact-grid">
         <form class="rv" onsubmit="sendInquiry(event)">
           <div class="f2c">
-            <input type="text" placeholder="Your name" required aria-label="Name">
-            <input type="text" placeholder="Company name" aria-label="Company">
+            <input type="text" name="name" placeholder="Your name" required aria-label="Name">
+            <input type="text" name="company" placeholder="Company name" aria-label="Company">
           </div>
           <div class="f2c">
-            <input type="email" placeholder="Email address" required aria-label="Email">
-            <input type="tel" placeholder="Phone number" aria-label="Phone">
+            <input type="email" name="email" placeholder="Email address" required aria-label="Email">
+            <input type="tel" name="phone" placeholder="Phone number" aria-label="Phone">
           </div>
           <div class="f2c">
-            <input type="text" placeholder="Country" aria-label="Country">
-            <select aria-label="Service required" required>
+            <input type="text" name="country" placeholder="Country" aria-label="Country">
+            <select name="service" aria-label="Service required" required>
               <option value="" disabled selected>Service required</option>
               <option>Brand Identity</option><option>Packaging Design</option><option>Social Media Design</option>
               <option>Amazon Listing Design</option><option>UI Design</option><option>Website Design</option>
@@ -322,18 +322,18 @@
             </select>
           </div>
           <div class="f2c">
-            <select aria-label="Budget range" required>
+            <select name="budget" aria-label="Budget range" required>
               <option value="" disabled selected>Budget range</option>
               <option>Under ₹50,000</option><option>₹50,000 – ₹1,00,000</option>
               <option>₹1,00,000 – ₹3,00,000</option><option>₹3,00,000+</option>
             </select>
-            <select aria-label="Timeline" required>
+            <select name="timeline" aria-label="Timeline" required>
               <option value="" disabled selected>Timeline</option>
               <option>Urgent — under 2 weeks</option><option>2–4 weeks</option>
               <option>1–2 months</option><option>Flexible</option>
             </select>
           </div>
-          <textarea placeholder="Tell me about your project…" required aria-label="Project description"></textarea>
+          <textarea name="message" placeholder="Tell me about your project…" required aria-label="Project description"></textarea>
           <button class="btn solid magnetic" type="submit" style="justify-self:start">Let's Build Your Project</button>
         </form>
 
