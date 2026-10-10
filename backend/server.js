@@ -20,9 +20,9 @@ const contentTypes = {
 //   GMAIL_APP_PASSWORD — a 16-char App Password from https://myaccount.google.com/apppasswords
 //   GMAIL_USER        — (optional) defaults to manasdabhade12@gmail.com
 //   RECEIVER_EMAIL    — (optional) defaults to manasdabhade12@gmail.com
-const GMAIL_USER = process.env.GMAIL_USER || 'manasdabhade12@gmail.com';
-const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || 'ybdo clyy ejcj ujqg';
-const RECEIVER_EMAIL = process.env.RECEIVER_EMAIL || 'manasdabhade12@gmail.com';
+const GMAIL_USER = process.env.GMAIL_USER || '';
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || '';
+const RECEIVER_EMAIL = process.env.RECEIVER_EMAIL || '';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
