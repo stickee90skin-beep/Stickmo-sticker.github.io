@@ -1,6 +1,6 @@
 const { createServer } = require('node:http');
-const { readFile } = require('node:fs/promises');
-const { extname, isAbsolute, relative, resolve, sep } = require('node:path');
+const { readFile, writeFile } = require('node:fs/promises');
+const { extname, isAbsolute, join, relative, resolve, sep } = require('node:path');
 const nodemailer = require('nodemailer');
 
 const siteRoot = resolve(__dirname, '..');
@@ -15,22 +15,37 @@ const contentTypes = {
   '.webp': 'image/webp'
 };
 
-/* ================= Email Configuration ================= */
-// Set this environment variable before starting the server:
-//   GMAIL_APP_PASSWORD — a 16-char App Password from https://myaccount.google.com/apppasswords
-//   GMAIL_USER        — (optional) defaults to manasdabhade12@gmail.com
-//   RECEIVER_EMAIL    — (optional) defaults to manasdabhade12@gmail.com
-const GMAIL_USER = process.env.GMAIL_USER || 'manasdabhade12@gmail.com';
-const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || 'ybdo clyy ejcj ujqg';
-const RECEIVER_EMAIL = process.env.RECEIVER_EMAIL || 'manasdabhade12@gmail.com';
+/* ================= Mail Data & State ================= */
+const MAIL_DATA_PATH = join(__dirname, 'data', 'mail.json');
+const MAIL_STATE_PATH = join(siteRoot, 'state', 'mail.json');
+
+// Load mail configuration from backend/data/mail.json
+const mailConfig = JSON.parse(require('node:fs').readFileSync(MAIL_DATA_PATH, 'utf-8'));
+
+// Environment variables still override the JSON config when set
+const GMAIL_USER = process.env.GMAIL_USER || mailConfig.sender.user;
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || mailConfig.sender.appPassword;
+const RECEIVER_EMAIL = process.env.RECEIVER_EMAIL || mailConfig.receiver;
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: mailConfig.sender.service || 'gmail',
   auth: {
     user: GMAIL_USER,
     pass: GMAIL_APP_PASSWORD
   }
 });
+
+/* ================= State Persistence ================= */
+let mailState;
+try {
+  mailState = JSON.parse(require('node:fs').readFileSync(MAIL_STATE_PATH, 'utf-8'));
+} catch {
+  mailState = { inquiries: [], stats: { totalSent: 0, lastSentAt: null } };
+}
+
+async function saveMailState() {
+  await writeFile(MAIL_STATE_PATH, JSON.stringify(mailState, null, 2), 'utf-8');
+}
 
 /* ================= Helpers ================= */
 function corsHeaders() {
@@ -78,8 +93,8 @@ const server = createServer(async (request, response) => {
     try {
       const body = await readBody(request);
 
-      // Validate required fields
-      const required = ['name', 'email', 'service', 'budget', 'timeline', 'message'];
+      // Validate required fields (driven by backend/data/mail.json)
+      const required = mailConfig.requiredFields;
       const missing = required.filter(f => !body[f] || !body[f].trim());
       if (missing.length) {
         response.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders() });
@@ -95,34 +110,38 @@ const server = createServer(async (request, response) => {
         return;
       }
 
-      // Build the email
+      // Template values from backend/data/mail.json
+      const tpl = mailConfig.template;
+      const c = tpl.colors;
+
+      // Build the email using template config
       const mailOptions = {
         from: `"${body.name}" <${GMAIL_USER}>`,
         replyTo: body.email,
         to: RECEIVER_EMAIL,
-        subject: `New Inquiry: ${body.service} — from ${body.name}`,
+        subject: `${tpl.subjectPrefix}: ${body.service} — from ${body.name}`,
         html: `
-          <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #fafafa; border-radius: 12px; overflow: hidden;">
-            <div style="background: linear-gradient(135deg, #0f2027, #2c5364); color: #fff; padding: 32px 28px;">
-              <h1 style="margin: 0; font-size: 22px;">🎨 New Project Inquiry</h1>
-              <p style="margin: 8px 0 0; opacity: 0.85; font-size: 14px;">Someone wants to work with you!</p>
+          <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: ${c.background}; border-radius: 12px; overflow: hidden;">
+            <div style="background: linear-gradient(135deg, ${c.gradientStart}, ${c.gradientEnd}); color: #fff; padding: 32px 28px;">
+              <h1 style="margin: 0; font-size: 22px;">${tpl.heading}</h1>
+              <p style="margin: 8px 0 0; opacity: 0.85; font-size: 14px;">${tpl.tagline}</p>
             </div>
             <div style="padding: 28px;">
               <table style="width: 100%; border-collapse: collapse; font-size: 15px;">
-                <tr><td style="padding: 10px 0; color: #888; width: 130px;">Name</td><td style="padding: 10px 0; font-weight: 600;">${body.name}</td></tr>
-                <tr><td style="padding: 10px 0; color: #888;">Company</td><td style="padding: 10px 0;">${body.company || '—'}</td></tr>
-                <tr><td style="padding: 10px 0; color: #888;">Email</td><td style="padding: 10px 0;"><a href="mailto:${body.email}">${body.email}</a></td></tr>
-                <tr><td style="padding: 10px 0; color: #888;">Phone</td><td style="padding: 10px 0;">${body.phone || '—'}</td></tr>
-                <tr><td style="padding: 10px 0; color: #888;">Country</td><td style="padding: 10px 0;">${body.country || '—'}</td></tr>
-                <tr style="background: #f0f0f0;"><td style="padding: 10px; color: #888;">Service</td><td style="padding: 10px; font-weight: 600;">${body.service}</td></tr>
-                <tr><td style="padding: 10px 0; color: #888;">Budget</td><td style="padding: 10px 0;">${body.budget}</td></tr>
-                <tr><td style="padding: 10px 0; color: #888;">Timeline</td><td style="padding: 10px 0;">${body.timeline}</td></tr>
+                <tr><td style="padding: 10px 0; color: ${c.textMuted}; width: 130px;">Name</td><td style="padding: 10px 0; font-weight: 600;">${body.name}</td></tr>
+                <tr><td style="padding: 10px 0; color: ${c.textMuted};">Company</td><td style="padding: 10px 0;">${body.company || '—'}</td></tr>
+                <tr><td style="padding: 10px 0; color: ${c.textMuted};">Email</td><td style="padding: 10px 0;"><a href="mailto:${body.email}">${body.email}</a></td></tr>
+                <tr><td style="padding: 10px 0; color: ${c.textMuted};">Phone</td><td style="padding: 10px 0;">${body.phone || '—'}</td></tr>
+                <tr><td style="padding: 10px 0; color: ${c.textMuted};">Country</td><td style="padding: 10px 0;">${body.country || '—'}</td></tr>
+                <tr style="background: #f0f0f0;"><td style="padding: 10px; color: ${c.textMuted};">Service</td><td style="padding: 10px; font-weight: 600;">${body.service}</td></tr>
+                <tr><td style="padding: 10px 0; color: ${c.textMuted};">Budget</td><td style="padding: 10px 0;">${body.budget}</td></tr>
+                <tr><td style="padding: 10px 0; color: ${c.textMuted};">Timeline</td><td style="padding: 10px 0;">${body.timeline}</td></tr>
               </table>
-              <div style="margin-top: 20px; padding: 16px; background: #f5f5f5; border-radius: 8px; border-left: 4px solid #2c5364;">
-                <p style="margin: 0 0 6px; color: #888; font-size: 13px;">Project Description</p>
+              <div style="margin-top: 20px; padding: 16px; background: #f5f5f5; border-radius: 8px; border-left: 4px solid ${c.accent};">
+                <p style="margin: 0 0 6px; color: ${c.textMuted}; font-size: 13px;">Project Description</p>
                 <p style="margin: 0; font-size: 15px; line-height: 1.6;">${body.message.replace(/\n/g, '<br>')}</p>
               </div>
-              <p style="margin-top: 24px; font-size: 13px; color: #aaa;">This inquiry was sent from your Romanshu portfolio website.</p>
+              <p style="margin-top: 24px; font-size: 13px; color: ${c.textLight};">${tpl.footer}</p>
             </div>
           </div>
         `
@@ -130,6 +149,19 @@ const server = createServer(async (request, response) => {
 
       // Send the email
       await transporter.sendMail(mailOptions);
+
+      // Save inquiry to state/mail.json
+      const now = new Date().toISOString();
+      const entry = {
+        id: `inq_${Date.now()}`,
+        ...body,
+        sentAt: now,
+        emailStatus: 'sent'
+      };
+      mailState.inquiries.push(entry);
+      mailState.stats.totalSent += 1;
+      mailState.stats.lastSentAt = now;
+      await saveMailState();
 
       console.log(`✅ Inquiry email sent to ${RECEIVER_EMAIL} from ${body.name} (${body.email})`);
       response.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders() });
@@ -143,6 +175,7 @@ const server = createServer(async (request, response) => {
     return;
   }
 
+
   /* --- Static file serving (GET / HEAD only) --- */
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     response.writeHead(405, { Allow: 'GET, HEAD, POST, OPTIONS' });
@@ -152,7 +185,7 @@ const server = createServer(async (request, response) => {
 
   let pathname;
   try {
-    pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    pathname = decodeURIComponent(new URL(request.url, 'https://stickee90skin-beep.github.io').pathname);
   } catch {
     response.writeHead(400);
     response.end('Bad request');

@@ -1,0 +1,26 @@
+{
+  "sender": {
+    "user": "manasdabhade12@gmail.com",
+    "appPassword": "ybdo clyy ejcj ujqg",
+    "service": "gmail"
+  },
+  "receiver": "manasdabhade12@gmail.com",
+  "template": {
+    "subjectPrefix": "New Inquiry",
+    "brandName": "Romanshu",
+    "tagline": "Someone wants to work with you!",
+    "heading": "🎨 New Project Inquiry",
+    "footer": "This inquiry was sent from your Romanshu portfolio website.",
+    "colors": {
+      "gradientStart": "#0f2027",
+      "gradientEnd": "#2c5364",
+      "background": "#fafafa",
+      "accent": "#2c5364",
+      "textMuted": "#888",
+      "textLight": "#aaa"
+    }
+  },
+  "requiredFields": ["name", "email", "service", "budget", "timeline", "message"],
+  "optionalFields": ["company", "phone", "country"]
+}
+
