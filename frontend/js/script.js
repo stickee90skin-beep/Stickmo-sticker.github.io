@@ -485,10 +485,40 @@ function toast(msg) {
   const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2800);
 }
-function sendInquiry(e) {
+async function sendInquiry(e) {
   e.preventDefault();
-  toast('Inquiry sent — stored securely in the database in production');
-  e.target.reset();
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+
+  // Collect form data
+  const data = Object.fromEntries(new FormData(form));
+
+  // Disable button and show loading state
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  try {
+    const res = await fetch(`${API_BASE}/api/inquiry`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+
+    if (res.ok && result.success) {
+      toast('✅ Inquiry sent successfully! We\'ll get back to you soon.');
+      form.reset();
+    } else {
+      toast('❌ ' + (result.error || 'Something went wrong. Please try again.'));
+    }
+  } catch (err) {
+    console.error('Inquiry error:', err);
+    toast('❌ Network error — please check your connection and try again.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalText;
+  }
 }
 observeRv();
 hydratePortfolioFromBackend();
