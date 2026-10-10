@@ -3,7 +3,7 @@ const { readFile } = require('node:fs/promises');
 const { extname, isAbsolute, relative, resolve, sep } = require('node:path');
 const nodemailer = require('nodemailer');
 
-const frontendRoot = resolve(__dirname, '..', 'frontend');
+const siteRoot = resolve(__dirname, '..');
 const contentTypes = {
   '.css': 'text/css; charset=utf-8',
   '.html': 'text/html; charset=utf-8',
@@ -160,8 +160,13 @@ const server = createServer(async (request, response) => {
   }
 
   const relativePath = pathname.replace(/^[/\\]+/, '') || 'index.html';
-  const filePath = resolve(frontendRoot, relativePath);
-  const relativeToRoot = relative(frontendRoot, filePath);
+  if (relativePath !== 'index.html' && !relativePath.startsWith('frontend/')) {
+    response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    response.end('Not found');
+    return;
+  }
+  const filePath = resolve(siteRoot, relativePath);
+  const relativeToRoot = relative(siteRoot, filePath);
   if (relativeToRoot === '..' || relativeToRoot.startsWith('..' + sep) || isAbsolute(relativeToRoot)) {
     response.writeHead(403);
     response.end('Forbidden');
@@ -182,7 +187,7 @@ const server = createServer(async (request, response) => {
       return;
     }
 
-    console.error('Failed to serve frontend asset:', error);
+    console.error('Failed to serve site file:', error);
     response.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
     response.end('Internal server error');
   }
