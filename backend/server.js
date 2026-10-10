@@ -185,7 +185,7 @@ const server = createServer(async (request, response) => {
 
   let pathname;
   try {
-    pathname = decodeURIComponent(new URL(request.url, 'https://stickee90skin-beep.github.io/portfolio-romanshu.github.io/#/').pathname);
+    pathname = decodeURIComponent(new URL(request.url, 'https://stickee90skin-beep.github.io/portfolio-romanshu.github.io/#/freelance').pathname);
   } catch {
     response.writeHead(400);
     response.end('Bad request');
